@@ -1,0 +1,7 @@
+// import jwt from "jsonwebtoken";
+
+export const verifyToken = (value: string) => {
+  console.log("Verify token");
+
+  // const decoded = jwt.verify(value, process.env.JWT_SECRET!);
+};

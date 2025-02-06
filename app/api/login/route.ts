@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
-export async function POST(request: NextRequest, response: NextResponse) {
+export async function POST(request: NextRequest) {
   const data = await request.json();
 
   const cookieStore = await cookies();
@@ -57,5 +57,5 @@ export async function POST(request: NextRequest, response: NextResponse) {
     isAdmin: user.is_admin,
   });
 
-  return Response.json({ username: user.username, token });
+  return NextResponse.json({ username: user.username, token });
 }

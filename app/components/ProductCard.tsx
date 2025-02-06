@@ -6,6 +6,39 @@ export const ProductCard = ({
   items,
   addedProducts,
   setAddedProducts,
+}: {
+  category: string;
+  items: ({
+    sizes: {
+      name: string;
+      id: string;
+      price: number;
+      productId: string;
+    }[];
+  } & {
+    name: string;
+    id: string;
+    categoryId: string;
+    description: string | null;
+  })[];
+  addedProducts: Record<
+    string,
+    {
+      quantity: number;
+      price: number;
+    }
+  >;
+  setAddedProducts: React.Dispatch<
+    React.SetStateAction<
+      Record<
+        string,
+        {
+          quantity: number;
+          price: number;
+        }
+      >
+    >
+  >;
 }) => {
   return (
     <>

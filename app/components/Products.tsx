@@ -2,9 +2,7 @@
 
 import { useState } from "react";
 import { ProductCard } from "./ProductCard";
-import { Badge, Box, Button, Text } from "@radix-ui/themes";
-
-const bottomMargin = "48px";
+import { Box, Button, Text } from "@radix-ui/themes";
 
 export const Products = ({
   categories,
