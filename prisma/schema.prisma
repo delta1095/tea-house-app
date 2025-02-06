@@ -1,0 +1,42 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  name    String?
+  username String @unique
+  password_hash String
+  num Int
+  role Int @default(0)
+  is_admin Boolean @default(false)
+  created_at DateTime @default(now())
+}
+
+model Category {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  products Product[]
+}
+
+model Product {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  categoryId  String   @db.ObjectId
+  category    Category @relation(fields: [categoryId], references: [id])
+  description String?  // Optional description for the product
+  sizes       Size[]
+}
+
+model Size {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  name      String  // e.g., "Small", "Medium", "Large"
+  price     Float
+  productId String  @db.ObjectId
+  product   Product @relation(fields: [productId], references: [id])
+}
