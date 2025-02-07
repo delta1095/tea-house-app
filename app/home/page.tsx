@@ -1,6 +1,5 @@
 import { PrismaClient } from "@prisma/client";
 import { Products } from "../components/Products";
-import { Button } from "@radix-ui/themes";
 
 const prisma = new PrismaClient();
 
