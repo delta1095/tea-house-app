@@ -52,7 +52,7 @@ export const Products = ({
           return;
         }}
       >
-        Log out
+        Log Out
       </Button>
       <Box
         style={{

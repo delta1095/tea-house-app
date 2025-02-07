@@ -7,8 +7,6 @@ export async function middleware(request: NextRequest) {
   // Example: Check if the user is authenticated
   const token = request.cookies.get("token");
 
-  console.log({ token });
-
   if (!token) {
     // Redirect to login if not authenticated
     return NextResponse.redirect(new URL("/login", request.url));

@@ -47,7 +47,7 @@ const Login = () => {
       align="center"
       justify="center"
       style={{
-        height: "100vh",
+        // height: "100vh",
         padding: "20px",
         backgroundColor: "var(--gray2)",
       }}
