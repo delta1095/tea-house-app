@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { Products } from "../components/Products";
+import { Button } from "@radix-ui/themes";
 
 const prisma = new PrismaClient();
 
@@ -14,5 +15,9 @@ export default async function Home() {
     },
   });
 
-  return <Products categories={categories} />;
+  return (
+    <div>
+      <Products categories={categories} />;
+    </div>
+  );
 }

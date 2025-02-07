@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ProductCard } from "./ProductCard";
 import { Box, Button, Text } from "@radix-ui/themes";
+import { redirect } from "next/navigation";
 
 export const Products = ({
   categories,
@@ -26,11 +27,33 @@ export const Products = ({
     id: string;
   })[];
 }) => {
+  const [logoutLoading, setLogoutLoading] = useState(false);
   const [addedProducts, setAddedProducts] = useState<
     Record<string, { quantity: number; price: number }>
   >({});
+
   return (
     <div style={{ padding: "16px" }}>
+      <Button
+        color="crimson"
+        variant="soft"
+        loading={logoutLoading}
+        onClick={async () => {
+          setLogoutLoading(true);
+          const response = await fetch("/api/logout");
+
+          const responseData = await response.json();
+
+          if (responseData?.message == "success") {
+            return redirect("/login");
+          }
+
+          setLogoutLoading(false);
+          return;
+        }}
+      >
+        Log out
+      </Button>
       <Box
         style={{
           backgroundColor: "var(--accent-1)",
