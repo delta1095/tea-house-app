@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, DropdownMenu, Theme } from "@radix-ui/themes";
+import { Button, Theme } from "@radix-ui/themes";
 import { ReactElement, useEffect, useState } from "react";
 
 type Theme = "light" | "inherit" | "dark";

@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { ProductCard } from "./ProductCard";
 import { Box, Button, Text } from "@radix-ui/themes";
-import { redirect } from "next/navigation";
 
 export const Products = ({
   categories,
