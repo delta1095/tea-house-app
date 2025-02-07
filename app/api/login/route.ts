@@ -40,8 +40,6 @@ export async function POST(request: NextRequest) {
     .update(data.password)
     .digest("hex");
 
-  console.log(password_hash);
-
   if (password_hash !== user?.password_hash) {
     return Response.json({
       error: true,
