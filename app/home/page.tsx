@@ -14,9 +14,5 @@ export default async function Home() {
     },
   });
 
-  return (
-    <div>
-      <Products categories={categories} />;
-    </div>
-  );
+  return <Products categories={categories} />;
 }
