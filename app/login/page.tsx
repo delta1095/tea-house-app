@@ -13,9 +13,12 @@ import { storeToken } from "../utils/storeToken";
 
 const Login = () => {
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const submitFormData = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    setLoading(true);
 
     const { username, password } = e.target as HTMLFormElement;
 
@@ -31,6 +34,7 @@ const Login = () => {
 
     if (responseData.error) {
       setError(responseData.message);
+      setLoading(false);
     } else {
       setError("");
       storeToken(responseData);
@@ -83,7 +87,8 @@ const Login = () => {
             color="blue"
             // size="large"
             type="submit"
-            style={{ width: "100%", marginTop: "24px", cursor: "pointer" }}
+            style={{ width: "100%", cursor: "pointer", marginTop: "24px" }}
+            loading={loading}
           >
             Log In
           </Button>
