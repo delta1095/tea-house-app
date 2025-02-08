@@ -106,9 +106,6 @@ export const Products = ({
           </Tabs.Content>
         </Box>
       </Tabs.Root>
-
-      {/* -------- */}
-      <Button onClick={() => console.log(addedProducts)}>view</Button>
     </div>
   );
 };
