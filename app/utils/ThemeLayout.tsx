@@ -9,7 +9,7 @@ export const ThemeLayout = ({ children }: { children: ReactElement }) => {
   const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
-    const newTheme = (localStorage.getItem("theme") || "inherit") as Theme;
+    const newTheme = (localStorage.getItem("theme") || "light") as Theme;
 
     if (newTheme) {
       setTheme(newTheme);
