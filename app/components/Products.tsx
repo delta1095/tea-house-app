@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ProductCard } from "./ProductCard";
-import { Box, Button, Card, DataList, Tabs, Text } from "@radix-ui/themes";
+import { Box, Card, DataList, Tabs, Text } from "@radix-ui/themes";
 
 export const Products = ({
   categories,
