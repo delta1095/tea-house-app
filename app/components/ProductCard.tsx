@@ -33,6 +33,7 @@ export const ProductCard = ({
       Record<
         string,
         {
+          item: string;
           quantity: number;
           price: number;
         }
@@ -76,7 +77,7 @@ export const ProductCard = ({
                       }}
                     >
                       <Text as="div">
-                        {size.name}: Nu.{size.price.toFixed(2)}
+                        {size.name}: Nu. {size.price.toFixed(2)}
                       </Text>
                       <Box
                         style={{
@@ -88,15 +89,20 @@ export const ProductCard = ({
                         <Button
                           style={{ marginTop: "auto", cursor: "pointer" }}
                           variant="soft"
+                          disabled={
+                            !addedProducts[size.id] ||
+                            addedProducts[size.id]?.quantity === 0
+                          }
                           onClick={() => {
                             if (
-                              addedProducts[size.id]?.quantity ||
-                              addedProducts[size.id].quantity > 0
+                              !addedProducts[size.id] ||
+                              addedProducts[size.id]?.quantity > 0
                             ) {
                               setAddedProducts((prev) => {
                                 return {
                                   ...prev,
                                   [size.id]: {
+                                    item: item.name,
                                     quantity: prev[size.id].quantity - 1,
                                     price:
                                       (prev[size.id].quantity - 1) * size.price,
@@ -120,7 +126,12 @@ export const ProductCard = ({
                               setAddedProducts((prev) => {
                                 return {
                                   ...prev,
-                                  [size.id]: { quantity: 1, price: size.price },
+                                  [size.id]: {
+                                    ...prev[size.id],
+                                    item: item.name,
+                                    quantity: 1,
+                                    price: size.price,
+                                  },
                                 };
                               });
                             } else {
@@ -128,6 +139,8 @@ export const ProductCard = ({
                                 return {
                                   ...prev,
                                   [size.id]: {
+                                    ...prev[size.id],
+                                    item: item.name,
                                     quantity: prev[size.id].quantity + 1,
                                     price:
                                       (prev[size.id].quantity + 1) * size.price,
