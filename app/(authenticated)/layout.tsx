@@ -3,7 +3,6 @@
 import { Button, DropdownMenu } from "@radix-ui/themes";
 import { redirect } from "next/navigation";
 import { useState } from "react";
-import Image from "next/image";
 
 export default function DashboardLayout({
   children,
@@ -14,21 +13,23 @@ export default function DashboardLayout({
 
   return (
     <div>
-      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          marginTop: "2rem",
+          marginBottom: "0.6rem",
+        }}
+      >
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
             <Button variant="soft">
-              <Image
-                src={"/hamburger-menu.svg"}
-                alt="menu"
-                width={16}
-                height={16}
-              />
+              Menu
               <DropdownMenu.TriggerIcon />
             </Button>
           </DropdownMenu.Trigger>
           <DropdownMenu.Content>
-            <DropdownMenu.Item shortcut="⌘ D">Duplicate</DropdownMenu.Item>
+            <DropdownMenu.Item>Duplicate</DropdownMenu.Item>
             <DropdownMenu.Separator />
             <DropdownMenu.Item shortcut="⌘ N">Archive</DropdownMenu.Item>
 
@@ -71,7 +72,6 @@ export default function DashboardLayout({
         </DropdownMenu.Root>
       </div>
       <main>{children}</main>
-      <footer>Exclusive Dashboard Footer</footer>
     </div>
   );
 }

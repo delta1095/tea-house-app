@@ -5,7 +5,7 @@ import { ReactElement, useEffect, useState } from "react";
 
 type Theme = "light" | "inherit" | "dark";
 
-export const ThemeLayout = ({ children }: { children: ReactElement }) => {
+export const ThemeSwitcher = ({ children }: { children: ReactElement }) => {
   const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {

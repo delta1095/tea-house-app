@@ -41,7 +41,7 @@ export const Products = ({
           top: 0,
           right: 0,
           zIndex: 1,
-          height: "72px",
+          // height: "72px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
