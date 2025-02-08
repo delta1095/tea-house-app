@@ -79,7 +79,7 @@ export const Products = ({
           <Tabs.Content value="documents">
             {Object.entries(addedProducts).map(([id, order]) => {
               return (
-                <Card key={id}>
+                <Card key={id} style={{ marginBottom: "0.5rem" }}>
                   <DataList.Root>
                     <DataList.Item align="center">
                       <DataList.Label minWidth="88px">Item</DataList.Label>

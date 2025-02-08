@@ -95,7 +95,7 @@ const Login = () => {
         </form>
       </Box>
       {error && (
-        <Callout.Root color="red">
+        <Callout.Root color="red" style={{ marginTop: "0.4rem" }}>
           <Callout.Text>{error}</Callout.Text>
         </Callout.Root>
       )}
