@@ -37,7 +37,8 @@ const Login = () => {
       setLoading(false);
     } else {
       setError("");
-      storeToken(responseData);
+      await storeToken(responseData);
+      setLoading(false);
     }
   };
 
