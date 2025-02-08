@@ -6,7 +6,6 @@ import {
   Button,
   Heading,
   Box,
-  ScrollArea,
   Flex,
   Callout,
 } from "@radix-ui/themes";

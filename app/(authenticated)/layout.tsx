@@ -1,8 +1,41 @@
 "use client";
 
-import { Button, DropdownMenu } from "@radix-ui/themes";
+import { Button, DropdownMenu, Grid } from "@radix-ui/themes";
+import { useAtom } from "jotai";
 import { redirect } from "next/navigation";
 import { useState } from "react";
+import { accentAtom, themeAtom } from "../state";
+import { Text } from "@radix-ui/themes";
+import { Accent } from "../utils/ThemeLayout";
+
+const colorList: Accent[] = [
+  "gray",
+  "gold",
+  "bronze",
+  "brown",
+  "yellow",
+  "amber",
+  "orange",
+  "tomato",
+  "red",
+  "ruby",
+  "crimson",
+  "pink",
+  "plum",
+  "purple",
+  "violet",
+  "iris",
+  "indigo",
+  "blue",
+  "cyan",
+  "teal",
+  "jade",
+  "green",
+  "grass",
+  "lime",
+  "mint",
+  "sky",
+];
 
 export default function DashboardLayout({
   children,
@@ -10,6 +43,8 @@ export default function DashboardLayout({
   children: React.ReactElement;
 }) {
   const [logoutLoading, setLogoutLoading] = useState(false);
+  const [theme, setTheme] = useAtom(themeAtom);
+  const [accent, setAccent] = useAtom(accentAtom);
 
   return (
     <div>
@@ -29,24 +64,55 @@ export default function DashboardLayout({
             </Button>
           </DropdownMenu.Trigger>
           <DropdownMenu.Content>
-            <DropdownMenu.Item>Duplicate</DropdownMenu.Item>
-            <DropdownMenu.Separator />
-            <DropdownMenu.Item shortcut="⌘ N">Archive</DropdownMenu.Item>
-
+            <DropdownMenu.Item>Settings</DropdownMenu.Item>
             <DropdownMenu.Sub>
-              <DropdownMenu.SubTrigger>More</DropdownMenu.SubTrigger>
+              <DropdownMenu.SubTrigger>Theme</DropdownMenu.SubTrigger>
               <DropdownMenu.SubContent>
-                <DropdownMenu.Item>Move to project…</DropdownMenu.Item>
-                <DropdownMenu.Item>Move to folder…</DropdownMenu.Item>
-
+                <Text as="label" size="2" style={{ marginBottom: "0.5rem" }}>
+                  Theme Color
+                </Text>
+                <Grid columns="2" gap="1">
+                  <Button
+                    disabled={theme === "light"}
+                    style={{
+                      height: "36px",
+                      width: "auto",
+                      backgroundColor: "white",
+                    }}
+                    onClick={() => setTheme("light")}
+                  ></Button>
+                  <Button
+                    disabled={theme === "dark"}
+                    style={{
+                      height: "36px",
+                      backgroundColor: "black",
+                    }}
+                    onClick={() => setTheme("dark")}
+                  ></Button>
+                </Grid>
                 <DropdownMenu.Separator />
-                <DropdownMenu.Item>Advanced options…</DropdownMenu.Item>
+                <Text as="label" size="2" style={{ marginBottom: "0.5rem" }}>
+                  Accent Color
+                </Text>
+
+                <Grid columns="5" gap="2" width="auto">
+                  {colorList.map((color) => (
+                    <Button
+                      disabled={accent === color}
+                      key={color}
+                      color={color}
+                      style={{
+                        height: "36px",
+                        width: "36px",
+                        borderRadius: "50%",
+                      }}
+                      onClick={() => setAccent(color)}
+                    ></Button>
+                  ))}
+                </Grid>
               </DropdownMenu.SubContent>
             </DropdownMenu.Sub>
 
-            <DropdownMenu.Separator />
-            <DropdownMenu.Item>Share</DropdownMenu.Item>
-            <DropdownMenu.Item>Add to favorites</DropdownMenu.Item>
             <DropdownMenu.Separator />
             <Button
               color="crimson"

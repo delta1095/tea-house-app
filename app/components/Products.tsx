@@ -48,7 +48,7 @@ export const Products = ({
             justifyContent: "space-between",
           }}
         >
-          <Text style={{ color: "var(--accent-8" }} size="5">
+          <Text size="5">
             {`Total: Nu.${Object.values(addedProducts).reduce(
               (acc, { price }) => acc + price,
               0
