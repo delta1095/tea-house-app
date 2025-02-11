@@ -15,7 +15,7 @@ export const ProductCard = ({
       id: string;
       price: number;
       productId: string;
-      imageUrl?: string;
+      imageUrl?: string | null;
     }[];
   } & {
     name: string;
