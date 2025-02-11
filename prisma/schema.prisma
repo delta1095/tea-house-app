@@ -39,4 +39,5 @@ model Size {
   price     Float
   productId String  @db.ObjectId
   product   Product @relation(fields: [productId], references: [id])
+  imageUrl  String?
 }

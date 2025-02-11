@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ProductCard } from "./ProductCard";
 import { Box, Card, DataList, Tabs, Text } from "@radix-ui/themes";
+import Image from "next/image";
 
 export const Products = ({
   categories,
@@ -14,6 +15,7 @@ export const Products = ({
         id: string;
         price: number;
         productId: string;
+        imageUrl?: string;
       }[];
     } & {
       name: string;

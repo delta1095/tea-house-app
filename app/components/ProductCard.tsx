@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Box, Button, Card, Heading, Text } from "@radix-ui/themes";
+// import Image from "next/image";
 
 export const ProductCard = ({
   category,
@@ -14,6 +15,7 @@ export const ProductCard = ({
       id: string;
       price: number;
       productId: string;
+      imageUrl?: string;
     }[];
   } & {
     name: string;
@@ -76,6 +78,15 @@ export const ProductCard = ({
                         marginBottom: "4px",
                       }}
                     >
+                      {/* <Image
+                        src={
+                          "https://res.cloudinary.com/dgbbkjj0p/image/upload/fl_preserve_transparency/v1739258426/cld-sample-4.jpg?_s=public-apps"
+                        }
+                        width={24}
+                        height={24}
+                        alt={item.name}
+                      /> */}
+
                       <Text as="div">
                         {size.name}: Nu. {size.price.toFixed(2)}
                       </Text>
