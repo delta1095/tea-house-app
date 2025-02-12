@@ -2,8 +2,24 @@
 
 import { useState } from "react";
 import { ProductCard } from "./ProductCard";
-import { Box, Card, DataList, Tabs, Text } from "@radix-ui/themes";
+import {
+  Box,
+  Button,
+  Callout,
+  Card,
+  DataList,
+  Tabs,
+  Text,
+} from "@radix-ui/themes";
 // import Image from "next/image";
+
+const messageColor: Record<
+  string,
+  React.ComponentProps<typeof Callout.Root>["color"]
+> = {
+  error: "red",
+  success: "green",
+};
 
 export const Products = ({
   categories,
@@ -31,6 +47,11 @@ export const Products = ({
   const [addedProducts, setAddedProducts] = useState<
     Record<string, { quantity: number; price: number; item: string }>
   >({});
+
+  const [message, setMessage] = useState<null | {
+    status: "error" | "success";
+    content: string;
+  }>(null);
 
   return (
     <div>
@@ -102,8 +123,55 @@ export const Products = ({
           </Tabs.Content>
 
           <Tabs.Content value="settings">
+            <Text>Would you like to confirm the transaction?</Text>
+            <hr />
             <Text size="2">
-              Edit your profile or update contact information.
+              <Button
+                style={{ marginTop: "1rem" }}
+                onClick={async () => {
+                  setMessage(null);
+                  const request = await fetch("/api/transactions", {
+                    method: "POST",
+                    body: JSON.stringify({
+                      addedProducts,
+                    }),
+                  });
+
+                  const data = await request.json();
+
+                  if (!data || data?.status === "error") {
+                    setMessage({
+                      status: "error",
+                      content: "Some error occurred!",
+                    });
+
+                    return;
+                  }
+
+                  if (data?.status == "success") {
+                    setMessage({
+                      status: "success",
+                      content: "Added successfully",
+                    });
+
+                    setAddedProducts({});
+
+                    setTimeout(() => {
+                      setMessage(null);
+                    }, 3000);
+                  }
+                }}
+              >
+                Confirm
+              </Button>
+              {message && (
+                <Callout.Root
+                  color={messageColor[message.status] || "amber"}
+                  style={{ marginTop: "0.4rem" }}
+                >
+                  <Callout.Text>{message.content}</Callout.Text>
+                </Callout.Root>
+              )}
             </Text>
           </Tabs.Content>
         </Box>

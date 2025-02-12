@@ -35,7 +35,9 @@ export const GET = async () => {
 
   // NextResponse.json({ message: "updated" });
 
-  prisma.size.updateMany({ data: { imageUrl: "cld-sample-5" } });
+  const products = await prisma.transaction.findMany();
 
-  NextResponse.json({ message: "success" });
+  console.log(products);
+
+  return NextResponse.json({ message: "success" });
 };

@@ -29,15 +29,28 @@ model Product {
   name        String
   categoryId  String   @db.ObjectId
   category    Category @relation(fields: [categoryId], references: [id])
-  description String?  // Optional description for the product
+  description String?
   sizes       Size[]
 }
 
 model Size {
   id        String  @id @default(auto()) @map("_id") @db.ObjectId
-  name      String  // e.g., "Small", "Medium", "Large"
+  name      String
   price     Float
   productId String  @db.ObjectId
   product   Product @relation(fields: [productId], references: [id])
   imageUrl  String?
+}
+
+model Transaction {
+  id     String  @id @default(auto()) @map("_id") @db.ObjectId
+  total  Float
+  items  Item[]
+}
+
+type Item {
+  name     String
+  sizeId   String @db.ObjectId
+  quantity Int
+  price    Float
 }
